@@ -22,7 +22,11 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'refusal',
+        'kids',
+        'police_case',
+        'marital_status_id',
     ];
 
     /**
@@ -73,5 +77,10 @@ class User extends Authenticatable implements JWTSubject
     public function qualifications()
     {
         return $this->belongsToMany(Qualification::class, 'user_qualification', 'user_id', 'qualification_id');
+    }
+
+    public function maritalStatus()
+    {
+        return $this->belongsTo(MaritalStatus::class, 'marital_status_id');
     }
 }
