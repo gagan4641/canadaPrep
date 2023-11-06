@@ -6,14 +6,14 @@ function Dashboard() {
 
     const { user, http } = AuthUser();
 
-    useEffect(() => {
-        fetchUserDetail();
-    }, [])
+    // useEffect(() => {
+    //     fetchUserDetail();
+    // }, [])
 
-    const fetchUserDetail = async () => {
-        const response = await http.me();
-        console.log(response);
-    }
+    // const fetchUserDetail = async () => {
+    //     const response = await http.me();
+    //     console.log(response);
+    // }
 
     return (
         <div>

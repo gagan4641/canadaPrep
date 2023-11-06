@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KidsDocument extends Model
+class ChildrenDocument extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class KidsDocument extends Model
         'document_id',
     ];
 
-    protected $table = 'kids_document';
+    protected $table = 'children_document';
 
     public function document()
     {

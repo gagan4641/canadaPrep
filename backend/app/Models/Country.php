@@ -14,9 +14,4 @@ class Country extends Model
     protected $fillable = [
         'name'
     ];
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'country_user', 'country_id', 'user_id');
-    }
 }

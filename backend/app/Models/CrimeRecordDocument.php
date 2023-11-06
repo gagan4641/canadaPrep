@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PoliceCaseDocument extends Model
+class CrimeRecordDocument extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class PoliceCaseDocument extends Model
         'document_id',
     ];
 
-    protected $table = 'police_case_document';
+    protected $table = 'crime_record_document';
 
     public function document()
     {

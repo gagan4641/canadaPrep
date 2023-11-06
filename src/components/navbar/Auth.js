@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home";
 import Dashboard from "../../pages/Dashboard";
 import AuthUser from "../../api/auth/AuthUser";
+import GenerateChecklist from "../../pages/GenerateChecklist";
 
 function Auth() {
 
@@ -21,6 +22,9 @@ function Auth() {
                         <NavLink className="nav-link" to="/">Home</NavLink>
                     </li>
                     <li className="nav-item">
+                        <NavLink className="nav-link" to="/generateChecklist">Generate Checklist</NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
                     </li>
                     <li className="nav-item">
@@ -32,6 +36,7 @@ function Auth() {
 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/generateChecklist" element={<GenerateChecklist />} />
                 <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
         </div>

@@ -25,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'phone',
         'refusal',
         'kids',
-        'police_case',
+        'crime_record',
         'marital_status_id',
     ];
 
@@ -67,11 +67,6 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function countries()
-    {
-        return $this->belongsToMany(Country::class, 'country_user', 'user_id', 'country_id');
     }
 
     public function qualifications()

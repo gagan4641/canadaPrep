@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kids_document', function (Blueprint $table) {
+        Schema::create('children_document', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
             // Add any other fields you need here
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kids_document');
+        Schema::dropIfExists('children_document');
     }
 };

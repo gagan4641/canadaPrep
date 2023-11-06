@@ -68,8 +68,8 @@ function Register() {
                 {errors.phone && <span className="text-danger">{errors.phone}</span>}
               </div>
               <div className="form-group">
-                <label htmlFor="sel1">Select Country:</label>
-                <select value={formData.country} name="country" onChange={handleChange} className="form-control" id="sel1">
+                <label htmlFor="country">Select Country:</label>
+                <select value={formData.country} name="country" onChange={handleChange} className="form-control" id="country">
                   <option value="">Select a country</option>
                   {loading ? (
                     <option value="" disabled>Loading...</option>
