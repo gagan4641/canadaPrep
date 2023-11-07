@@ -26,6 +26,7 @@ class User extends Authenticatable implements JWTSubject
         'refusal',
         'kids',
         'crime_record',
+        'dob',
         'marital_status_id',
     ];
 

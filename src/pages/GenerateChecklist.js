@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import AuthUser from "../api/auth/AuthUser";
+import GenerateChecklistApi from "../api/GenerateChecklistApi";
 import { useNavigate } from "react-router-dom";
 import { CountryContext } from "../context/CountryContext";
 import useCategory from "../hooks/useCategory";
@@ -10,7 +11,8 @@ function GenerateChecklist() {
   const { categories, loading: categoryLoading } = useCategory();
   const { qualifications, loading: qualificationLoading } = useQualification();
   const navigate = useNavigate();
-  const { http, user } = AuthUser();
+  const { http } = GenerateChecklistApi();
+  const { user } = AuthUser();
   const { countries, loading: countryLoading } = useContext(CountryContext);
   const [formData, setFormData] = useState({
     name: user.name,
@@ -19,17 +21,22 @@ function GenerateChecklist() {
     country: user.country_id,
     age: '',
     qualifications: [],
-    workExperience: [{ company: "", position: "", from: "", to:""}],
+    workExperience: [],
     pastRefusals: '',
     maritalStatus: false,
     children: '',
     crimeRecord: '',
     category: '',
-    workExperience: [],
-    workExperienceStatus: false
+    workExperienceStatus: false,
+    dob: user.dob
   });
 
   const [errors, setErrors] = useState({});
+
+  // const validationErrors = {
+  //   workExperience: errors.workExperience,
+  //   // Add more error keys for other work experience fields if needed
+  // };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -44,13 +51,6 @@ function GenerateChecklist() {
           : (prevFormData[name].filter((id) => id !== optionId)),
       }));
 
-      // setFormData((prevFormData) => {
-      //   const updatedFormData = { ...prevFormData };
-      //   if (updatedFormData.hasOwnProperty(`completionYear-${optionId}`)) {
-      //     delete updatedFormData[`completionYear-${optionId}`];
-      //   }
-      // });
-
     } else {
       setFormData((prevFormData) => ({ ...prevFormData, [name]: type == 'checkbox' ? checked : value }));
     }
@@ -59,7 +59,7 @@ function GenerateChecklist() {
   const addWorkExperience = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      workExperience: [...prevFormData.workExperience, { company: "", position: "", from: "", to:"" }],
+      workExperience: [...prevFormData.workExperience, { company: "", position: "", from: "", to: "" }],
     }));
   };
 
@@ -79,7 +79,6 @@ function GenerateChecklist() {
         ...prevFormData,
         workExperienceStatus: false,
       }));
-      addWorkExperience();
     }
   }, [formData.workExperience])
 
@@ -101,27 +100,44 @@ function GenerateChecklist() {
       ...prevFormData,
       [name]: checked,
     }));
+
+    // It will add/remove the work exp section based on the work exp status checkbox
+    if (checked) {
+      addWorkExperience();
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        workExperience: [],
+      }));
+    }
   };
 
 
   const submitForm = async (e) => {
 
     e.preventDefault();
-    console.log(formData);
+    //console.log(formData);
     try {
 
-      await http.register(formData);
+      await http.generateChecklist(formData);
       setErrors({});
-      navigate('/login');
+      navigate('/dashboard');
 
     } catch (error) {
 
       if (error.response && error.response.data.errors) {
         setErrors(error.response.data.errors);
+
+        const errorsPrint = error.response.data.errors;
+        console.log(errorsPrint);
+
       } else {
-        console.error('Registration Error:', error);
+        console.error('Generate Checklist Error:', error);
       }
     }
+
+
+
   }
 
   return (
@@ -212,12 +228,22 @@ function GenerateChecklist() {
                             onChange={handleChange}
                             placeholder="Completion Year"
                           />
+
                         </div>
                       )}
                     </div>
                   ))
                 )}
-                {errors.qualification && <span className="text-danger">{errors.qualification}</span>}
+                {errors && errors.qualifications && (
+                  <p className="text-danger">{errors.qualifications[0]}</p>
+                )}
+                {!errors.qualifications &&
+                  formData.qualifications.length > 0 &&
+                  !formData.qualifications.every(id => formData[`completionYear${id}`]) && (
+                    <p className="text-danger">
+                      Please provide a valid completion year for all selected qualifications.
+                    </p>
+                  )}
               </div>
               <br />
               <div className="form-group">
@@ -250,6 +276,9 @@ function GenerateChecklist() {
                         placeholder="Enter company"
                         id={`company-${index}`}
                       />
+                      {errors['workExperience.' + index + '.company'] && (
+                        <span className="text-danger">{errors['workExperience.' + index + '.company'][0]}</span>
+                      )}
                     </div>
                     <div className="form-group">
                       <label htmlFor={`position-${index}`}>Position:</label>
@@ -262,6 +291,9 @@ function GenerateChecklist() {
                         placeholder="Enter position"
                         id={`position-${index}`}
                       />
+                      {errors['workExperience.' + index + '.position'] && (
+                        <span className="text-danger">{errors['workExperience.' + index + '.position'][0]}</span>
+                      )}
                     </div>
                     <div className="form-group">
                       <label htmlFor={`from-${index}`}>From:</label>
@@ -269,27 +301,30 @@ function GenerateChecklist() {
                         name="from"
                         value={workExp.from}
                         onChange={(e) => handleWorkExperienceChange(e, index)}
-                        type="text"
+                        type="date"
                         className="form-control"
                         placeholder="Enter from"
                         id={`from-${index}`}
                       />
+                      {errors['workExperience.' + index + '.from'] && (
+                        <span className="text-danger">{errors['workExperience.' + index + '.from'][0]}</span>
+                      )}
                     </div>
-
                     <div className="form-group">
                       <label htmlFor={`to-${index}`}>To:</label>
                       <input
                         name="to"
                         value={workExp.to}
                         onChange={(e) => handleWorkExperienceChange(e, index)}
-                        type="text"
+                        type="date"
                         className="form-control"
                         placeholder="Enter to"
                         id={`to-${index}`}
                       />
+                      {errors['workExperience.' + index + '.to'] && (
+                        <span className="text-danger">{errors['workExperience.' + index + '.to'][0]}</span>
+                      )}
                     </div>
-
-
                     <button
                       type="button"
                       className="btn btn-danger"
@@ -339,13 +374,14 @@ function GenerateChecklist() {
                   <label htmlFor="crimeRecord" className="form-check-label">
                     If yes, select the checkbox
                   </label>
+                  {errors.crimeRecord && <span className="text-danger">{errors.crimeRecord}</span>}
                 </div>
               </div>
               <br />
               <div className="form-group">
-                <label htmlFor="age">Age:</label>
-                <input name="age" value={formData.age} onChange={handleChange} type="text" className="form-control" placeholder="Enter age" id="age" />
-                {errors.age && <span className="text-danger">{errors.age}</span>}
+                <label htmlFor="dob">Date Of Birth:</label>
+                <input name="dob" value={formData.dob} onChange={handleChange} type="date" className="form-control" placeholder="Enter dob" id="dob" />
+                {errors.dob && <span className="text-danger">{errors.dob}</span>}
               </div>
               <br />
               <button type="submit" className="btn btn-primary">Register</button>

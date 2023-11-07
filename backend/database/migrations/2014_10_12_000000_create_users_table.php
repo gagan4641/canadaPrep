@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('refusal')->default(0);
             $table->integer('children')->default(0);
             $table->integer('crime_record')->default(0);
+            $table->date('dob');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
