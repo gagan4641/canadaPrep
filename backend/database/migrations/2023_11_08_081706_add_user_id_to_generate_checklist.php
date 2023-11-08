@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('experience', function (Blueprint $table) {
-            $table->id();
+        Schema::table('generate_checklist', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->string('company');
-            $table->string('position');
-            $table->date('from_date');
-            $table->date('to_date');
-            $table->boolean('status')->default(true);
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -29,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('experience');
+        Schema::table('generate_checklist', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
     }
 };

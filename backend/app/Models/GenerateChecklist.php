@@ -18,6 +18,7 @@ class GenerateChecklist extends Model
         'category_id',
         'country_id',
         'marital_status_id',
+        'user_id',
     ];
 
     // Define the Category relationship (many-to-one)
@@ -36,5 +37,16 @@ class GenerateChecklist extends Model
     public function maritalStatus()
     {
         return $this->belongsTo(MaritalStatus::class);
+    }
+
+    public function qualifications()
+    {
+        return $this->belongsToMany(Qualification::class, 'generate_checklist_qualification')
+            ->withPivot('completion_year');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

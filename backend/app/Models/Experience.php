@@ -10,9 +10,14 @@ class Experience extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'title', 'status',
+        'user_id',
+        'generate_checklist_id',
+        'company',
+        'position',
+        'from_date',
+        'to_date',
+        'status',
     ];
-
     protected $table = 'experience';
 
     public function user()
@@ -20,8 +25,8 @@ class Experience extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function documents()
+    public function generateChecklist()
     {
-        return $this->belongsToMany(Document::class, 'experience_document');
+        return $this->belongsTo(GenerateChecklist::class);
     }
 }

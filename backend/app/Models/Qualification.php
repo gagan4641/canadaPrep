@@ -14,9 +14,15 @@ class Qualification extends Model
     protected $fillable = [
         'title', 'status', 'created_at', 'updated_at'
     ];
-    
+
     public function documents()
     {
         return $this->belongsToMany(Document::class, 'document_qualification', 'qualification_id', 'document_id');
+    }
+
+    public function generateChecklists()
+    {
+        return $this->belongsToMany(GenerateChecklist::class, 'generate_checklist_qualification')
+            ->withPivot('completion_year');
     }
 }
