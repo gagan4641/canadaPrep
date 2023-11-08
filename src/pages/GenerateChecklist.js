@@ -9,12 +9,11 @@ import useMaritalStatus from "../hooks/useMaritalStatus";
 
 function GenerateChecklist() {
 
+  const [errors, setErrors] = useState({});
+  const [flashMessage, setFlashMessage] = useState(null);
   const { categories, loading: categoryLoading } = useCategory();
   const { qualifications, loading: qualificationLoading } = useQualification();
   const { maritalStatuses, loading: maritalStatusesLoading } = useMaritalStatus();
-
-
-
   const navigate = useNavigate();
   const { http } = GenerateChecklistApi();
   const { user } = AuthUser();
@@ -35,14 +34,6 @@ function GenerateChecklist() {
     workExperienceStatus: false,
     dob: user.dob
   });
-
-  const [errors, setErrors] = useState({});
-  const [flashMessage, setFlashMessage] = useState(null);
-
-  // const validationErrors = {
-  //   workExperience: errors.workExperience,
-  //   // Add more error keys for other work experience fields if needed
-  // };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -87,8 +78,6 @@ function GenerateChecklist() {
       }));
     }
   }, [formData.workExperience])
-
-
 
   const handleWorkExperienceChange = (e, index) => {
     const { name, value } = e.target;
@@ -232,7 +221,6 @@ function GenerateChecklist() {
                             onChange={handleChange}
                             placeholder="Completion Year"
                           />
-
                         </div>
                       )}
                     </div>
@@ -391,7 +379,7 @@ function GenerateChecklist() {
                 {errors.dob && <span className="text-danger">{errors.dob}</span>}
               </div>
               <br />
-              <button type="submit" className="btn btn-primary">Register</button>
+              <button type="submit" className="btn btn-primary">Generate</button>
             </form>
           </div>
         </div>
