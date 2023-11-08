@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('generate_checklist_id');
             $table->unsignedBigInteger('qualification_id');
-            $table->year('completion_year'); // Add the completion_year field
+            $table->year('completion_year');
             $table->timestamps();
 
             $table->foreign('generate_checklist_id')->references('id')->on('generate_checklist')->onDelete('cascade');

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->date('dob');
             $table->boolean('crime_record')->default(false);
+            $table->integer('children')->nullable();
+            $table->integer('past_refusals')->nullable();
             $table->timestamps();
         });
     }

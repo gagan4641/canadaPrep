@@ -19,8 +19,10 @@ class GenerateChecklist extends Model
         'country_id',
         'marital_status_id',
         'user_id',
+        'children',
+        'past_refusals',
     ];
-
+    
     // Define the Category relationship (many-to-one)
     public function category()
     {

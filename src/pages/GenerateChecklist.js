@@ -32,7 +32,9 @@ function GenerateChecklist() {
     crimeRecord: false,
     category: '',
     workExperienceStatus: false,
-    dob: user.dob
+    dob: user.dob,
+    children: '',
+    pastRefusals: '',
   });
 
   const handleChange = (e) => {
@@ -352,8 +354,43 @@ function GenerateChecklist() {
               </div>
 
 
-
+              
               <br />
+
+              <div className="form-group">
+                <label>Do you have children?</label>
+                <input
+                  type="text"
+                  name="children"
+                  value={formData.children}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Enter the number of children"
+                />
+                {errors.children && <span className="text-danger">{errors.children}</span>}
+              </div>
+              <br />
+              <div className="form-group">
+                <label>Do you have any past refusals?</label>
+                <input
+                  type="text"
+                  name="pastRefusals"
+                  value={formData.pastRefusals}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Enter the number of past refusals"
+                />
+                {errors.pastRefusals && <span className="text-danger">{errors.pastRefusals}</span>}
+              </div>
+              <br />
+
+
+
+
+
+
+
+              
               <div className="form-group">
                 <label>Have you ever been involved in a court case or charged with a crime?</label>
                 <div className="form-check">

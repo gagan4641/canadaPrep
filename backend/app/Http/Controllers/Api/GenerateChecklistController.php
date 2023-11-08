@@ -15,7 +15,7 @@ class GenerateChecklistController extends Controller
             'email' => 'required|email',
             'phone' => 'required|numeric',
             'country' => 'required|exists:country,id',
-            'category' => 'required|exists:categories,id',
+            'category' => 'required|exists:category,id',
             'dob' => 'required|date',
             'maritalStatus' => 'required',
             'crimeRecord' => 'boolean',
@@ -25,6 +25,8 @@ class GenerateChecklistController extends Controller
             'workExperience.*.position' => 'string',
             'workExperience.*.from' => 'date',
             'workExperience.*.to' => 'date',
+            'children' => 'nullable|integer|max:10',
+            'pastRefusals' => 'nullable|integer|max:10', 
         ];
 
         $messages = [
@@ -33,11 +35,7 @@ class GenerateChecklistController extends Controller
 
         $request->validate($rules, $messages);
 
-
-
-
-        
-        
+        // Logic for the qualification year validations
         if(count($request['qualifications']) > 0) {
 
             $completionYearError = [];
@@ -56,12 +54,12 @@ class GenerateChecklistController extends Controller
 
 
 
-
-
-
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
+
+
+            dd($request);
 
             $result = response()->json(['status' => 'success', 'message' => 'Form submitted successfully']);
         }
