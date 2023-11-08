@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,7 +12,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Truncate (empty) all tables
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
+        $tables = DB::select('SHOW TABLES');
+        foreach ($tables as $table) {
+            $table = get_object_vars($table);
+            $tableName = array_values($table)[0];
+            DB::table($tableName)->truncate();
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        // Insert country data
+        \App\Models\Country::create([
+            'name' => 'India'
+        ]);
+
+        // Insert category data
+        \App\Models\Category::create([
+            'title' => 'Study',
+            'status' => '1',
+        ]);
+
+        // Insert user data
+        \App\Models\User::factory()->create([
+            'name' => 'Gagan Vaid',
+            'email' => 'gagan@test.com',
+            'phone' => '786786',
+            'country_id' => '1',
+            'dob' => '1992-11-18'
+        ]);
+
+        // Insert qualifications data
         $qualificationsData = [
             [
                 'title' => '12th',
@@ -40,21 +72,41 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
+        foreach ($qualificationsData as $row) {
+            \App\Models\Qualification::create($row);
+        }
 
-        //\App\Models\User::factory(2)->create();
+        // Insert marital status data
+        $maritalStatusData = [
+            [
+                'title' => 'Single',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Married',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Divorced',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Widow',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ]
+        ];
 
-        \App\Models\Country::create([
-            'name' => 'India'
-        ]);
+        foreach ($maritalStatusData as $row) {
+            \App\Models\MaritalStatus::create($row);
+        }
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'user@test.com',
-            'phone' => '786786',
-            'country_id' => '1',
-            'dob' => '1990-01-15'
-        ]);
-
-       // \App\Models\Qualification::factory()->create($qualificationsData);
     }
 }

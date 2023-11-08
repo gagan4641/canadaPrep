@@ -13,10 +13,15 @@ class MaritalStatus extends Model
         'title', 'status',
     ];
 
-    protected $table = 'marital_statuses';
+    protected $table = 'marital_status';
 
     public function documents()
     {
         return $this->belongsToMany(Document::class, 'marital_status_document');
+    }
+
+    public function generateChecklists()
+    {
+        return $this->hasMany(GenerateChecklist::class);
     }
 }

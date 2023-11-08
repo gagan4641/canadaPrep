@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('marital_statuses', function (Blueprint $table) {
+        Schema::create('document', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->boolean('status')->default(true);
+            $table->boolean('common')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('marital_statuses');
+        Schema::dropIfExists('document');
     }
 };

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('user_qualification', function (Blueprint $table) {
-            $table->year('completion_year')->after('qualification_id'); // Add the completion_year field
+        Schema::create('marital_status', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->boolean('status')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('user_qualification', function (Blueprint $table) {
-            $table->dropColumn('completion_year');
-        });
+        Schema::dropIfExists('marital_status');
     }
 };

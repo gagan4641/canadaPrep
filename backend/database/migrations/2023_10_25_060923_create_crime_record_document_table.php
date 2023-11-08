@@ -17,7 +17,7 @@ return new class extends Migration
             // Add any other fields you need here
 
             // Define foreign key constraints
-            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
 
             $table->timestamps();
         });

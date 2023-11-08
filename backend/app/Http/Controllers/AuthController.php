@@ -48,6 +48,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
             'phone' => 'required|string',
             'country' => 'required|exists:country,id',
+            'dob' => 'required|date',
         ]);
 
         // Create the user
@@ -56,10 +57,11 @@ class AuthController extends Controller
             'email' => $formData['email'],
             'password' => bcrypt($formData['password']),
             'phone' => $formData['phone'],
+            'dob' => $formData['dob'],
         ]);
 
-        // Attach the selected country to the user
-        $user->countries()->attach($formData['country']);
+        $user->country_id = $formData['country'];
+        $user->save();
 
         return response()->json('Registration Successful');
     }

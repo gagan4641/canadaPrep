@@ -18,8 +18,8 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key constraints
-            $table->foreign('marital_status_id')->references('id')->on('marital_statuses')->onDelete('cascade');
-            $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('marital_status_id')->references('id')->on('marital_status')->onDelete('cascade');
+            $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
         });
     }
 

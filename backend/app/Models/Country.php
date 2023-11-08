@@ -14,4 +14,14 @@ class Country extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function generateChecklists()
+    {
+        return $this->hasMany(GenerateChecklist::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

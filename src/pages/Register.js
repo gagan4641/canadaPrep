@@ -16,6 +16,7 @@ function Register() {
     password: '',
     phone: '',
     country: '',
+    dob: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -55,6 +56,11 @@ function Register() {
                 <label htmlFor="name">Name:</label>
                 <input name="name" value={formData.name} onChange={handleChange} type="text" className="form-control" placeholder="Enter name" id="name" />
                 {errors.name && <span className="text-danger">{errors.name}</span>}
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">Date of birth:</label>
+                <input name="dob" value={formData.doob} onChange={handleChange} type="date" className="form-control" placeholder="Enter Date Of Birth" id="dob" />
+                {errors.dob && <span className="text-danger">{errors.dob}</span>}
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email address:</label>

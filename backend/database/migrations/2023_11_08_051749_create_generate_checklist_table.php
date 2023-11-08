@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_qualification', function (Blueprint $table) {
+        Schema::create('generate_checklist', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('qualification_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->date('dob');
+            $table->boolean('crime_record')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_qualification');
+        Schema::dropIfExists('generate_checklist');
     }
 };

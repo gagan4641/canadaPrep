@@ -13,7 +13,7 @@ class Document extends Model
         'title', 'status', 'common',
     ];
 
-    protected $table = 'documents';
+    protected $table = 'document';
 
     public function categories()
     {

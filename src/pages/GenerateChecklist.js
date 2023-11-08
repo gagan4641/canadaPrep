@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { CountryContext } from "../context/CountryContext";
 import useCategory from "../hooks/useCategory";
 import useQualification from "../hooks/useQualification";
+import useMaritalStatus from "../hooks/useMaritalStatus";
 
 function GenerateChecklist() {
 
   const { categories, loading: categoryLoading } = useCategory();
   const { qualifications, loading: qualificationLoading } = useQualification();
+  const { maritalStatuses, loading: maritalStatusesLoading } = useMaritalStatus();
+
+
+
   const navigate = useNavigate();
   const { http } = GenerateChecklistApi();
   const { user } = AuthUser();
@@ -23,15 +28,16 @@ function GenerateChecklist() {
     qualifications: [],
     workExperience: [],
     pastRefusals: '',
-    maritalStatus: false,
+    maritalStatus: [],
     children: '',
-    crimeRecord: '',
+    crimeRecord: false,
     category: '',
     workExperienceStatus: false,
     dob: user.dob
   });
 
   const [errors, setErrors] = useState({});
+  const [flashMessage, setFlashMessage] = useState(null);
 
   // const validationErrors = {
   //   workExperience: errors.workExperience,
@@ -112,31 +118,29 @@ function GenerateChecklist() {
     }
   };
 
-
   const submitForm = async (e) => {
 
     e.preventDefault();
-    //console.log(formData);
     try {
-
-      await http.generateChecklist(formData);
-      setErrors({});
-      navigate('/dashboard');
+      const response = await http.generateChecklist(formData);
+      console.log(response);
+      if (response.status === 'success') {
+        setErrors({});
+        navigate('/dashboard');
+      } else {
+        setErrors(response.customErrors);
+      }
 
     } catch (error) {
 
       if (error.response && error.response.data.errors) {
         setErrors(error.response.data.errors);
-
-        const errorsPrint = error.response.data.errors;
-        console.log(errorsPrint);
+        console.log(error.response.data.errors);
 
       } else {
         console.error('Generate Checklist Error:', error);
       }
     }
-
-
 
   }
 
@@ -155,7 +159,7 @@ function GenerateChecklist() {
               <br />
               <div className="form-group">
                 <label htmlFor="email">Email address:</label>
-                <input value={formData.email} name="email" onChange={handleChange} type="email" className="form-control" placeholder="Enter email" id="email" />
+                <input value={formData.email} name="email" onChange={handleChange} type="text" className="form-control" placeholder="Enter email" id="email" />
                 {errors.email && <span className="text-danger">{errors.email}</span>}
               </div>
               <br />
@@ -234,16 +238,17 @@ function GenerateChecklist() {
                     </div>
                   ))
                 )}
-                {errors && errors.qualifications && (
-                  <p className="text-danger">{errors.qualifications[0]}</p>
+                {errors && errors.qualifications && <p className="text-danger">{errors.qualifications[0]}</p>}
+                {formData.qualifications.length > 0 && !formData.qualifications.every(id => formData[`completionYear${id}`]) && (
+                  <p className="text-danger">
+                    Please provide a valid completion year for all selected qualifications.
+                  </p>
                 )}
-                {!errors.qualifications &&
-                  formData.qualifications.length > 0 &&
-                  !formData.qualifications.every(id => formData[`completionYear${id}`]) && (
-                    <p className="text-danger">
-                      Please provide a valid completion year for all selected qualifications.
-                    </p>
-                  )}
+                {errors && errors.completionYearError &&
+                  errors.completionYearError.map((error, index) => (
+                    <p key={index} className="text-danger">{error} </p>
+                  ))
+                }
               </div>
               <br />
               <div className="form-group">
@@ -342,22 +347,24 @@ function GenerateChecklist() {
               </div>
               <br />
               <div className="form-group">
-                <label>Are you married?</label>
-                <div className="form-check">
-                  <input
-                    type="checkbox"
-                    id="maritalStatus"
-                    name="maritalStatus"
-                    onChange={handleChange}
-                    className="form-check-input"
-                    value={formData.maritalStatus}
-                    checked={formData.maritalStatus}
-                  />
-                  <label htmlFor="maritalStatus" className="form-check-label">
-                    If yes, select the checkbox
-                  </label>
-                </div>
+                <label htmlFor="maritalStatus">Select Marital Status:</label>
+                <select value={formData.maritalStatus} name="maritalStatus" onChange={handleChange} className="form-control" id="maritalStatus">
+                  <option value="">Select marital status</option>
+                  {maritalStatusesLoading ? (
+                    <option value="" disabled>Loading...</option>
+                  ) : (
+                    maritalStatuses.map((maritalStatus) => (
+                      <option key={maritalStatus.id} value={maritalStatus.id}>
+                        {maritalStatus.title}
+                      </option>
+                    ))
+                  )}
+                </select>
+                {errors.maritalStatus && <span className="text-danger">{errors.maritalStatus}</span>}
               </div>
+
+
+
               <br />
               <div className="form-group">
                 <label>Have you ever been involved in a court case or charged with a crime?</label>

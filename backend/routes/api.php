@@ -3,7 +3,8 @@
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\QualificationController;
-use App\Http\Controllers\GenerateChecklistController;
+use App\Http\Controllers\Api\GenerateChecklistController;
+use App\Http\Controllers\Api\MaritalStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 //use Spatie\FlareClient\Api;
@@ -29,6 +30,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::get('countries', [CountryController::class, 'list']);
 Route::get('categories', [CategoryController::class, 'list']);
 Route::get('qualifications', [QualificationController::class, 'list']);
+Route::get('maritalStatuses', [MaritalStatusController::class, 'list']);
 Route::post('generateChecklist', [GenerateChecklistController::class, 'create']);
 
 Route::group(['middleware' => 'api'], function () {
