@@ -26,7 +26,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                 return [
                     'document_group_id' => $group->first()->document_group_id,
                     'document_group_title' => $group->first()->document_group_title,
-                    'document' => $group->map(function ($doc) {
+                    'documents' => $group->map(function ($doc) {
                         return [
                             'document_id' => $doc->document_id,
                             'document_title' => $doc->document_title,
