@@ -17,9 +17,9 @@ class Document extends Model
 
     public function qualifications()
     {
-        return $this->belongsToMany(Qualification::class, 'document_qualification', 'document_id', 'qualification_id');
+        return $this->hasMany(QualificationDocument::class, 'document_id');
     }
-
+    
     public function maritalStatuses()
     {
         return $this->belongsToMany(MaritalStatus::class, 'marital_status_document');

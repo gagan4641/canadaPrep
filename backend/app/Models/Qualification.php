@@ -17,12 +17,17 @@ class Qualification extends Model
 
     public function documents()
     {
-        return $this->belongsToMany(Document::class, 'document_qualification', 'qualification_id', 'document_id');
+        return $this->hasMany(QualificationDocument::class, 'qualification_id');
     }
 
     public function generateChecklists()
     {
         return $this->belongsToMany(GenerateChecklist::class, 'generate_checklist_qualification')
             ->withPivot('completion_year');
+    }
+
+    public function documentGroup()
+    {
+        return $this->belongsTo(DocumentGroup::class, 'document_group_id');
     }
 }

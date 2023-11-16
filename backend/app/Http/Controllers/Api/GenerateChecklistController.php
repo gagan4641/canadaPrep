@@ -43,15 +43,13 @@ class GenerateChecklistController extends Controller
             'qualifications.required' => 'Please select at least one qualification.'
         ];
 
-
         $request->validate($rules, $messages);
         $customErrors = $generateChecklistService->isValidQualificationYear($customErrors);
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
-
-
-            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments();
+            
+            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request['qualifications']);
 
             dd('here', $groupDocuments);
 

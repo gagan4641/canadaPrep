@@ -17,4 +17,9 @@ class DocumentGroup extends Model
     {
         return $this->hasMany(CommonDocument::class);
     }
+
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class, 'document_group_id');
+    }
 }

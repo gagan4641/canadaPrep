@@ -4,5 +4,5 @@ namespace App\Interfaces\Api;
 
 interface GenerateChecklistInterface 
 {
-    public function getGroupDocuments();
+    public function getGroupDocuments($checkedQualifications);
 }

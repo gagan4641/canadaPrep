@@ -9,6 +9,8 @@ use PHPUnit\TextUI\XmlConfiguration\UpdateSchemaLocation;
 use SebastianBergmann\CodeCoverage\Driver\Driver;
 use SebastianBergmann\Type\SimpleType;
 
+use function Ramsey\Uuid\v1;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -48,29 +50,69 @@ class DatabaseSeeder extends Seeder
             'dob' => '1992-11-18'
         ]);
 
+        // Insert document groups data
+        $documentGroupsData = [
+            [
+                'title' => 'Research and Initial Preparation checklist',
+                'description' => 'Research and Initial Preparation checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Identification and common documents checklist',
+                'description' => 'Identification and common documents checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Qualification documents checklist',
+                'description' => 'Qualification documents checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($documentGroupsData as $row) {
+            \App\Models\DocumentGroup::create($row);
+        }
+
         // Insert qualifications data
         $qualificationsData = [
             [
                 'title' => '12th',
                 'status' => '1',
+                'document_group_id' => '3',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Diploma',
+                'status' => '1',
+                'document_group_id' => '3',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'Graduation',
                 'status' => '1',
+                'document_group_id' => '3',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'Masters',
                 'status' => '1',
+                'document_group_id' => '3',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'PHD',
                 'status' => '1',
+                'document_group_id' => '3',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ]
@@ -110,28 +152,6 @@ class DatabaseSeeder extends Seeder
 
         foreach ($maritalStatusData as $row) {
             \App\Models\MaritalStatus::create($row);
-        }
-
-        // Insert document groups data
-        $documentGroupsData = [
-            [
-                'title' => 'Research and Initial Preparation',
-                'description' => 'Research and Initial Preparation',
-                'status' => '1',
-                'created_at' => '2023-11-06 01:14:14',
-                'updated_at' => '2023-11-06 01:14:14'
-            ],
-            [
-                'title' => 'Identification and common documents',
-                'description' => 'Identification Checklist',
-                'status' => '1',
-                'created_at' => '2023-11-06 01:14:14',
-                'updated_at' => '2023-11-06 01:14:14'
-            ],
-        ];
-
-        foreach ($documentGroupsData as $row) {
-            \App\Models\DocumentGroup::create($row);
         }
 
         // Insert documents data
@@ -178,17 +198,91 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => '12th Mark Sheet',
+                'description' => '12th Mark Sheet',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => '12th Passing Certificate',
+                'description' => '12th Passing Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Diploma Certificate',
+                'description' => 'Diploma Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Degree Certificate',
+                'description' => 'Degree Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Transcripts',
+                'description' => 'Diploma Transcripts',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Course completion certificate',
+                'description' => 'Course completion certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Backlog certificate',
+                'description' => 'Backlog certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Research Thesis/Dissertation',
+                'description' => 'Research Thesis/Dissertation',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Recommendation Letters',
+                'description' => 'Recommendation Letters',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Publications (if any)',
+                'description' => 'Publications (if any)',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Certificate translation if not in English or French',
+                'description' => 'Certificate translation if not in English or French',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+
         ];
 
         foreach ($documentData as $row) {
             \App\Models\Document::create($row);
         }
 
-
-
-
-
-        // Insert documents data
+        // Insert common documents data
         $documentData = [
             [
                 'document_group_id' => '1',
@@ -231,6 +325,176 @@ class DatabaseSeeder extends Seeder
         foreach ($documentData as $row) {
             \App\Models\CommonDocument::create($row);
         }
-        
+
+        // Insert document qualification data
+        $documentQualificationData = [
+            [
+                'qualification_id' => '1',
+                'document_id' => '7',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '1',
+                'document_id' => '8',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '1',
+                'document_id' => '17',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '2',
+                'document_id' => '9',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '2',
+                'document_id' => '11',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '2',
+                'document_id' => '12',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '2',
+                'document_id' => '13',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '2',
+                'document_id' => '17',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '3',
+                'document_id' => '10',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '3',
+                'document_id' => '11',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '3',
+                'document_id' => '12',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '3',
+                'document_id' => '13',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '3',
+                'document_id' => '17',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '10',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '11',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '12',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '13',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '14',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '4',
+                'document_id' => '17',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '10',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '11',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '12',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '13',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '14',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '15',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '16',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'qualification_id' => '5',
+                'document_id' => '17',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($documentQualificationData as $row) {
+            \App\Models\QualificationDocument::create($row);
+        }
+
     }
 }
