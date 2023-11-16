@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_document', function (Blueprint $table) {
+        Schema::create('common_document', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('document_group_id');
             $table->unsignedBigInteger('document_id');
             $table->timestamps();
-    
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+
+            // Foreign keys 
+            $table->foreign('document_group_id')->references('id')->on('document_group')->onDelete('cascade');
             $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_document');
+        Schema::dropIfExists('common_document');
     }
 };

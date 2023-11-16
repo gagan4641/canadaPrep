@@ -10,15 +10,10 @@ class Document extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'status', 'common',
+        'title', 'status', 'description',
     ];
 
     protected $table = 'document';
-
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'category_document');
-    }
 
     public function qualifications()
     {
@@ -28,5 +23,10 @@ class Document extends Model
     public function maritalStatuses()
     {
         return $this->belongsToMany(MaritalStatus::class, 'marital_status_document');
+    }
+
+    public function commonDocuments()
+    {
+        return $this->hasMany(CommonDocument::class);
     }
 }

@@ -3,11 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Api\GenerateChecklistRepository;
+use App\Services\Api\GenerateChecklistService;
 use Illuminate\Http\Request;
 
 class GenerateChecklistController extends Controller
 {
-    public function create(Request $request)
+
+    private GenerateChecklistRepository $generateChecklistRepository;
+
+    public function __construct(GenerateChecklistRepository $generateChecklistRepository) 
+    {
+        $this->generateChecklistRepository = $generateChecklistRepository;
+    }
+
+    public function create(Request $request, GenerateChecklistService $generateChecklistService)
     {
         $customErrors = [];
         $rules = [
@@ -26,40 +36,24 @@ class GenerateChecklistController extends Controller
             'workExperience.*.from' => 'date',
             'workExperience.*.to' => 'date',
             'children' => 'nullable|integer|max:10',
-            'pastRefusals' => 'nullable|integer|max:10', 
+            'pastRefusals' => 'nullable|integer|max:10',
         ];
 
         $messages = [
             'qualifications.required' => 'Please select at least one qualification.'
         ];
 
+
         $request->validate($rules, $messages);
-
-        // Logic for the qualification year validations
-        if(count($request['qualifications']) > 0) {
-
-            $completionYearError = [];
-            $currentYear = date("Y");
-            foreach($request['qualifications'] as $qualificationId) {
-
-                $qualificationYear = $request["completionYear".$qualificationId];
-
-                if (!preg_match('/^\d{4}$/', $qualificationYear) || $qualificationYear < 1900 || $qualificationYear > $currentYear) {
-                    $completionYearError[] = $qualificationYear." is not a valid year";
-                }
-            }
-
-            $customErrors['completionYearError'] = $completionYearError;
-        }
-
-
-
+        $customErrors = $generateChecklistService->isValidQualificationYear($customErrors);
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
 
 
-            dd($request);
+            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments();
+
+            dd('here', $groupDocuments);
 
             $result = response()->json(['status' => 'success', 'message' => 'Form submitted successfully']);
         }

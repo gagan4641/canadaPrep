@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use Cron\HoursField;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use PHPUnit\TextUI\XmlConfiguration\UpdateSchemaLocation;
+use SebastianBergmann\CodeCoverage\Driver\Driver;
+use SebastianBergmann\Type\SimpleType;
 
 class DatabaseSeeder extends Seeder
 {
@@ -108,5 +112,125 @@ class DatabaseSeeder extends Seeder
             \App\Models\MaritalStatus::create($row);
         }
 
+        // Insert document groups data
+        $documentGroupsData = [
+            [
+                'title' => 'Research and Initial Preparation',
+                'description' => 'Research and Initial Preparation',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Identification and common documents',
+                'description' => 'Identification Checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($documentGroupsData as $row) {
+            \App\Models\DocumentGroup::create($row);
+        }
+
+        // Insert documents data
+        $documentData = [
+            [
+                'title' => 'Research Programs and Universities',
+                'description' => 'Research Programs and Universities',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Check Eligibility and Requirements',
+                'description' => 'Check Eligibility and Requirements',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Financial Planning',
+                'description' => 'Financial Planning',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Aadhar Card',
+                'description' => 'Aadhar Card',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Pan Card',
+                'description' => 'Pan Card',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Passport',
+                'description' => 'Passport',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($documentData as $row) {
+            \App\Models\Document::create($row);
+        }
+
+
+
+
+
+        // Insert documents data
+        $documentData = [
+            [
+                'document_group_id' => '1',
+                'document_id' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '1',
+                'document_id' => '2',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '1',
+                'document_id' => '3',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '4',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '5',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '6',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($documentData as $row) {
+            \App\Models\CommonDocument::create($row);
+        }
+        
     }
 }

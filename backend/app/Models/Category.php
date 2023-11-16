@@ -15,11 +15,6 @@ class Category extends Model
 
     protected $table = 'category';
 
-    public function documents()
-    {
-        return $this->belongsToMany(Document::class, 'category_document');
-    }
-
     public function generateChecklists()
     {
         return $this->hasMany(GenerateChecklist::class);
