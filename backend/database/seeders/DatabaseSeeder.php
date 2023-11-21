@@ -73,6 +73,13 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => 'Work experience documents checklist',
+                'description' => 'Work experience documents checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
         ];
 
         foreach ($documentGroupsData as $row) {
@@ -275,7 +282,34 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
-
+            [
+                'title' => 'Offer Letters',
+                'description' => 'Offer Letters',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Contracts/Agreements',
+                'description' => 'Contracts/Agreements',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Experience Letters',
+                'description' => 'Experience Letters',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Salary Slips/Pay Stubs',
+                'description' => 'Salary Slips/Pay Stubs',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
         ];
 
         foreach ($documentData as $row) {
@@ -283,7 +317,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // Insert common documents data
-        $documentData = [
+        $commonDocumentData = [
             [
                 'document_group_id' => '1',
                 'document_id' => '1',
@@ -322,7 +356,7 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($documentData as $row) {
+        foreach ($commonDocumentData as $row) {
             \App\Models\CommonDocument::create($row);
         }
 
@@ -496,5 +530,53 @@ class DatabaseSeeder extends Seeder
             \App\Models\QualificationDocument::create($row);
         }
 
+
+
+
+
+        
+        // Insert common documents data
+        $workExperienceDocumentData = [
+            [
+                'document_id' => '18',
+                'document_group_id' => '4',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '19',
+                'document_group_id' => '4',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '20',
+                'document_group_id' => '4',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '21',
+                'document_group_id' => '4',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '17',
+                'document_group_id' => '4',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($workExperienceDocumentData as $row) {
+            \App\Models\WorkExperienceDocument::create($row);
+        }
+        
     }
 }

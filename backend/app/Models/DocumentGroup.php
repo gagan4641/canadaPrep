@@ -22,4 +22,9 @@ class DocumentGroup extends Model
     {
         return $this->hasMany(Qualification::class, 'document_group_id');
     }
+
+    public function workExperienceDocuments()
+    {
+        return $this->hasMany(WorkExperienceDocument::class);
+    }
 }

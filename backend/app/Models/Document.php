@@ -19,7 +19,7 @@ class Document extends Model
     {
         return $this->hasMany(QualificationDocument::class, 'document_id');
     }
-    
+
     public function maritalStatuses()
     {
         return $this->belongsToMany(MaritalStatus::class, 'marital_status_document');
@@ -28,5 +28,10 @@ class Document extends Model
     public function commonDocuments()
     {
         return $this->hasMany(CommonDocument::class);
+    }
+
+    public function workExperienceDocuments()
+    {
+        return $this->hasMany(WorkExperienceDocument::class);
     }
 }

@@ -49,7 +49,7 @@ class GenerateChecklistController extends Controller
 
         if (!array_filter($customErrors)) {
             
-            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request['qualifications']);
+            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request);
 
             dd('here', $groupDocuments);
 

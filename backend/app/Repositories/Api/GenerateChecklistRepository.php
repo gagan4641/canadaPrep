@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class GenerateChecklistRepository implements GenerateChecklistInterface
 {
-    public function getGroupDocuments($checkedQualifications)
+    public function getGroupDocuments($request)
     {
         // Fetch document groups with associated documents
         $documentGroups = DB::table('document_group')
@@ -37,7 +37,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         // Fetch qualifications for each document group
         foreach ($documentGroups as &$group) {
-            $group['qualifications'] = $this->getQualificationsUnderDocumentGroup($group['document_group_id'], $checkedQualifications);
+            $group['qualifications'] = $this->getQualificationsUnderDocumentGroup($group['document_group_id'], $request['qualifications']);
         }
 
         return $documentGroups;
