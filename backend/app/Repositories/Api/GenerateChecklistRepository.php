@@ -19,6 +19,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             )
             ->leftJoin('common_document', 'document_group.id', '=', 'common_document.document_group_id')
             ->leftJoin('document', 'common_document.document_id', '=', 'document.id')
+            ->where('document_group.status', true)
             ->orderBy('document_group.id')
             ->get()
             ->groupBy('document_group_id')
@@ -37,7 +38,17 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         // Fetch qualifications for each document group
         foreach ($documentGroups as &$group) {
+
             $group['qualifications'] = $this->getQualificationsUnderDocumentGroup($group['document_group_id'], $request['qualifications']);
+            
+            if ($request['workExperienceStatus'] == true) {
+
+                $workExperienceDocuments = $this->fetchWorkExperienceDocuments($group['document_group_id']);
+
+                $group['workExperience'] = $workExperienceDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+            }
         }
 
         return $documentGroups;
@@ -54,7 +65,9 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                 'document.title as document_title'
             )
             ->where('qualification.document_group_id', $documentGroupId)
-            ->whereIn('qualification.id', $checkedQualifications) 
+            ->whereIn('qualification.id', $checkedQualifications)
+            ->where('qualification.status', true)
+            ->where('document.status', true) 
             ->leftJoin('qualification_document', 'qualification.id', '=', 'qualification_document.qualification_id')
             ->leftJoin('document', 'qualification_document.document_id', '=', 'document.id')
             ->get()
@@ -74,5 +87,28 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             })->values()->toArray();
 
         return $qualifications;
+    }
+
+    protected function fetchWorkExperienceDocuments($documentGroupId)
+    {
+        $workExperienceDocuments = DB::table('work_experience_document')
+    ->select(
+        'work_experience_document.document_id',
+        'work_experience_document.document_group_id',
+        'work_experience_document.status',
+        'document.status as document_status',
+        'work_experience_document.created_at as created_at',
+        'work_experience_document.updated_at as updated_at',
+        'document.title as document_title',
+        'document.created_at as document_created_at',
+        'document.updated_at as document_updated_at'
+    )
+    ->where('work_experience_document.document_group_id', $documentGroupId)
+    ->where('work_experience_document.status', true)
+        ->where('document.status', true)
+    ->leftJoin('document', 'work_experience_document.document_id', '=', 'document.id')
+    ->get();
+
+        return $workExperienceDocuments;
     }
 }
