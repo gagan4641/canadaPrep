@@ -36,11 +36,13 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                 ];
             })->values()->toArray();
 
-        // Fetch qualifications for each document group
+
         foreach ($documentGroups as &$group) {
 
+            // Fetch qualifications documents
             $group['qualifications'] = $this->getQualificationsUnderDocumentGroup($group['document_group_id'], $request['qualifications']);
-            
+
+            // Fetch workExperience documents
             if ($request['workExperienceStatus'] == true) {
 
                 $workExperienceDocuments = $this->fetchWorkExperienceDocuments($group['document_group_id']);
@@ -67,7 +69,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             ->where('qualification.document_group_id', $documentGroupId)
             ->whereIn('qualification.id', $checkedQualifications)
             ->where('qualification.status', true)
-            ->where('document.status', true) 
+            ->where('document.status', true)
             ->leftJoin('qualification_document', 'qualification.id', '=', 'qualification_document.qualification_id')
             ->leftJoin('document', 'qualification_document.document_id', '=', 'document.id')
             ->get()
@@ -92,22 +94,22 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
     protected function fetchWorkExperienceDocuments($documentGroupId)
     {
         $workExperienceDocuments = DB::table('work_experience_document')
-    ->select(
-        'work_experience_document.document_id',
-        'work_experience_document.document_group_id',
-        'work_experience_document.status',
-        'document.status as document_status',
-        'work_experience_document.created_at as created_at',
-        'work_experience_document.updated_at as updated_at',
-        'document.title as document_title',
-        'document.created_at as document_created_at',
-        'document.updated_at as document_updated_at'
-    )
-    ->where('work_experience_document.document_group_id', $documentGroupId)
-    ->where('work_experience_document.status', true)
-        ->where('document.status', true)
-    ->leftJoin('document', 'work_experience_document.document_id', '=', 'document.id')
-    ->get();
+            ->select(
+                'work_experience_document.document_id',
+                'work_experience_document.document_group_id',
+                'work_experience_document.status',
+                'document.status as document_status',
+                'work_experience_document.created_at as created_at',
+                'work_experience_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('work_experience_document.document_group_id', $documentGroupId)
+            ->where('work_experience_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'work_experience_document.document_id', '=', 'document.id')
+            ->get();
 
         return $workExperienceDocuments;
     }
