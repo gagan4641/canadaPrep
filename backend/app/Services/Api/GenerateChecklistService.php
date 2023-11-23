@@ -32,4 +32,31 @@ class GenerateChecklistService
 
         return $customErrors;
     }
+
+    public function isValidQualificationYearSequence($customErrors) {
+
+        if(count($this->request['qualifications']) > 1) {
+
+            $prevYear = null;
+            $qualificationsIds = $this->request['qualifications'];
+            sort($qualificationsIds);
+        
+            foreach($qualificationsIds as $qualification) {
+
+                $completionYearInput = 'completionYear'.$qualification;
+                $year = $this->request[$completionYearInput];
+
+                if ($prevYear !== null && $year < $prevYear) {
+
+                    $customErrors['completionYearError'][] = "The completion year of a lower education level cannot be greater than the completion year of a higher education level";
+                    break;
+                }
+
+                $prevYear = $year;
+            }
+        }
+
+        return $customErrors;
+    }
+
 }

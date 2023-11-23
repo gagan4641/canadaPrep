@@ -44,13 +44,15 @@ class GenerateChecklistController extends Controller
         ];
 
         $request->validate($rules, $messages);
+
+     //   dd($request);
+
         $customErrors = $generateChecklistService->isValidQualificationYear($customErrors);
+        $customErrors = $generateChecklistService->isValidQualificationYearSequence($customErrors);
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
 
-            //dd($request);
-            
             $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request);
 
             dd('here', $groupDocuments);
