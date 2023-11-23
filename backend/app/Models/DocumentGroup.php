@@ -27,4 +27,9 @@ class DocumentGroup extends Model
     {
         return $this->hasMany(WorkExperienceDocument::class);
     }
+
+    public function maritalStatuses()
+    {
+        return $this->hasMany(MaritalStatus::class);
+    }
 }

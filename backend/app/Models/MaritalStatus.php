@@ -10,18 +10,23 @@ class MaritalStatus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'status',
+        'document_group_id', 'title', 'status',
     ];
 
     protected $table = 'marital_status';
 
-    public function documents()
-    {
-        return $this->belongsToMany(Document::class, 'marital_status_document');
-    }
-
     public function generateChecklists()
     {
         return $this->hasMany(GenerateChecklist::class);
+    }
+
+    public function documentGroup()
+    {
+        return $this->belongsTo(DocumentGroup::class);
+    }
+
+    public function maritalStatusDocuments()
+    {
+        return $this->hasMany(MaritalStatusDocument::class);
     }
 }

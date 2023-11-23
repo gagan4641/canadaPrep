@@ -80,6 +80,13 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => 'Marital status documents checklist',
+                'description' => 'Marital status documents checklist',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
         ];
 
         foreach ($documentGroupsData as $row) {
@@ -134,24 +141,28 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Single',
                 'status' => '1',
+                'document_group_id' => '5',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'Married',
                 'status' => '1',
+                'document_group_id' => '5',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'Divorced',
                 'status' => '1',
+                'document_group_id' => '5',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
             [
                 'title' => 'Widow',
                 'status' => '1',
+                'document_group_id' => '5',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ]
@@ -306,6 +317,62 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Salary Slips/Pay Stubs',
                 'description' => 'Salary Slips/Pay Stubs',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Marriage Certificate',
+                'description' => 'Marriage Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Divorce Certificate',
+                'description' => 'Divorce Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Death Certificate of your spouse',
+                'description' => 'Death Certificate of your spouse',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Spouse Passport',
+                'description' => 'Spouse Passport',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Spouse Pan Card',
+                'description' => 'Spouse Pan Card',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Spouse Aadhar Card',
+                'description' => 'Spouse Aadhar Card',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Spouse Passport (if Possible)',
+                'description' => 'Spouse Passport (if Possible)',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Spouse Aadhar Card (if Possible)',
+                'description' => 'Spouse Aadhar Card (if Possible)',
                 'status' => '1',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
@@ -530,11 +597,6 @@ class DatabaseSeeder extends Seeder
             \App\Models\QualificationDocument::create($row);
         }
 
-
-
-
-
-        
         // Insert common documents data
         $workExperienceDocumentData = [
             [
@@ -578,5 +640,83 @@ class DatabaseSeeder extends Seeder
             \App\Models\WorkExperienceDocument::create($row);
         }
         
+        // Insert marital status documents data
+        $maritalStatusDocumentData = [
+            [
+                'marital_status_id' => '2',
+                'document_id' => '22',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '2',
+                'document_id' => '25',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '2',
+                'document_id' => '26',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '2',
+                'document_id' => '27',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '3',
+                'document_id' => '23',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '3',
+                'document_id' => '28',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '3',
+                'document_id' => '29',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '4',
+                'document_id' => '24',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '4',
+                'document_id' => '28',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'marital_status_id' => '4',
+                'document_id' => '29',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($maritalStatusDocumentData as $row) {
+            \App\Models\MaritalStatusDocument::create($row);
+        }
+
     }
 }

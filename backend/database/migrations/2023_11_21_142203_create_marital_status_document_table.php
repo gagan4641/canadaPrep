@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('marital_status_id');
             $table->unsignedBigInteger('document_id');
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
-            // Define foreign key constraints
-            $table->foreign('marital_status_id')->references('id')->on('marital_status')->onDelete('cascade');
-            $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
+            $table->foreign('marital_status_id')->references('id')->on('marital_status');
+            $table->foreign('document_id')->references('id')->on('document');
         });
     }
 
