@@ -10,7 +10,7 @@ class ChildrenDocument extends Model
     use HasFactory;
 
     protected $fillable = [
-        'document_id',
+        'document_id', 'document_group_id', 'status',
     ];
 
     protected $table = 'children_document';
@@ -18,5 +18,10 @@ class ChildrenDocument extends Model
     public function document()
     {
         return $this->belongsTo(Document::class, 'document_id');
+    }
+
+    public function documentGroup()
+    {
+        return $this->belongsTo(DocumentGroup::class, 'document_group_id');
     }
 }

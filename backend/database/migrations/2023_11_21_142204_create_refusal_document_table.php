@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('children_document', function (Blueprint $table) {
+        Schema::create('refusal_document', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
-            // Add any other fields you need here
-
-            // Define foreign key constraints
+            $table->unsignedBigInteger('document_group_id');
+            $table->boolean('status')->default(true);
+            
             $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
+            $table->foreign('document_group_id')->references('id')->on('document_group')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('children_document');
+        Schema::dropIfExists('refusal_document');
     }
 };

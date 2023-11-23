@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('crime_record_document', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_id');
-            // Add any other fields you need here
+            $table->unsignedBigInteger('document_group_id');
+            $table->boolean('status')->default(true);
 
             // Define foreign key constraints
             $table->foreign('document_id')->references('id')->on('document')->onDelete('cascade');
+            $table->foreign('document_group_id')->references('id')->on('document_group')->onDelete('cascade');
 
             $table->timestamps();
         });

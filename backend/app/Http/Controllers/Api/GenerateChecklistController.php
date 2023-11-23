@@ -35,8 +35,8 @@ class GenerateChecklistController extends Controller
             'workExperience.*.position' => 'string',
             'workExperience.*.from' => 'date',
             'workExperience.*.to' => 'date',
-            'children' => 'nullable|integer|max:10',
-            'pastRefusals' => 'nullable|integer|max:10',
+            'children' => 'boolean',
+            'pastRefusals' => 'boolean',
         ];
 
         $messages = [
@@ -48,6 +48,8 @@ class GenerateChecklistController extends Controller
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
+
+            //dd($request);
             
             $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request);
 

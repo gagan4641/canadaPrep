@@ -34,4 +34,19 @@ class Document extends Model
     {
         return $this->hasMany(MaritalStatusDocument::class);
     }
+
+    public function ChildrenDocuments()
+    {
+        return $this->hasMany(ChildrenDocument::class);
+    }
+
+    public function CrimeRecordDocuments()
+    {
+        return $this->hasMany(CrimeRecordDocument::class);
+    }
+
+    public function RefusalDocuments()
+    {
+        return $this->hasMany(RefusalDocument::class);
+    }
 }

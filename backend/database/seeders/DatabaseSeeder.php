@@ -87,6 +87,27 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => 'Documents checklist related to your children',
+                'description' => 'Documents checklist related to your children',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Documents checklist related to past refusal/refusals',
+                'description' => 'Documents checklist related to past refusal/refusals',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Documents checklist related to the Court Case/Crime Record',
+                'description' => 'Documents checklist related to the Court Case/Crime Record',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
         ];
 
         foreach ($documentGroupsData as $row) {
@@ -377,6 +398,97 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => 'Children Birth Certificate',
+                'description' => 'Children Birth Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Children Passport',
+                'description' => 'Children Passport',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Children Aadhar Card',
+                'description' => 'Children Aadhar Card',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Application number/GC Key if possible',
+                'description' => 'Application number/GC Key if possible',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Purpose of visit',
+                'description' => 'Purpose of visit',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Explanation Letter/Caips notes for refusal',
+                'description' => 'Explanation Letter/Caips notes for refusal',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Improved Financial/Assets Documentation',
+                'description' => 'Improved Financial/Assets Documentation',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Proof of Ties to Home Country',
+                'description' => 'Proof of Ties to Home Country',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Police Clearance Certificate',
+                'description' => 'Police Clearance Certificate',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'A detailed and honest Explanation Letter explaining the circumstances',
+                'description' => 'A detailed and honest Explanation Letter explaining the circumstances',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Character References from credible sources (Such as employers, community leaders, teachers, etc)',
+                'description' => 'Character References from credible sources (Such as employers, community leaders, teachers, etc)',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Any additional supporting evidences',
+                'description' => 'Any additional supporting evidences',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'It is suggested to contact our official immigration lawyers/advisors for better suggestion',
+                'description' => 'It is suggested to contact our official immigration lawyers/advisors for better suggestion',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],   
         ];
 
         foreach ($documentData as $row) {
@@ -639,7 +751,7 @@ class DatabaseSeeder extends Seeder
         foreach ($workExperienceDocumentData as $row) {
             \App\Models\WorkExperienceDocument::create($row);
         }
-        
+
         // Insert marital status documents data
         $maritalStatusDocumentData = [
             [
@@ -716,6 +828,121 @@ class DatabaseSeeder extends Seeder
 
         foreach ($maritalStatusDocumentData as $row) {
             \App\Models\MaritalStatusDocument::create($row);
+        }
+
+        // Insert children documents data
+        $childrenDocumentData = [
+            [
+                'document_id' => '30',
+                'document_group_id' => '6',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '31',
+                'document_group_id' => '6',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '32',
+                'document_group_id' => '6',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($childrenDocumentData as $row) {
+            \App\Models\ChildrenDocument::create($row);
+        }
+
+        // Insert refusal documents data
+        $refusalDocumentData = [
+            [
+                'document_id' => '33',
+                'document_group_id' => '7',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '34',
+                'document_group_id' => '7',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '35',
+                'document_group_id' => '7',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '36',
+                'document_group_id' => '7',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '37',
+                'document_group_id' => '7',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($refusalDocumentData as $row) {
+            \App\Models\RefusalDocument::create($row);
+        }
+
+        // Insert crime record documents data
+        $crimeRecordDocumentData = [
+            [
+                'document_id' => '38',
+                'document_group_id' => '8',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '39',
+                'document_group_id' => '8',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '40',
+                'document_group_id' => '8',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '41',
+                'document_group_id' => '8',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '42',
+                'document_group_id' => '8',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($crimeRecordDocumentData as $row) {
+            \App\Models\CrimeRecordDocument::create($row);
         }
 
     }

@@ -31,8 +31,8 @@ function GenerateChecklist() {
     category: '',
     workExperienceStatus: false,
     dob: user.dob,
-    children: '',
-    pastRefusals: '',
+    children: false,
+    pastRefusals: false,
   });
 
   const handleChange = (e) => {
@@ -350,45 +350,47 @@ function GenerateChecklist() {
                 </select>
                 {errors.maritalStatus && <span className="text-danger">{errors.maritalStatus}</span>}
               </div>
-
-
-              
               <br />
+
 
               <div className="form-group">
                 <label>Do you have children?</label>
+                <div className="form-check">
                 <input
-                  type="text"
+                  type="checkbox"
+                  id="children"
                   name="children"
                   value={formData.children}
+                  checked={formData.children}
                   onChange={handleChange}
-                  className="form-control"
-                  placeholder="Enter the number of children"
+                  className="form-check-input"
                 />
+                <label htmlFor="children" className="form-check-label">
+                    If yes, select the checkbox
+                  </label>
                 {errors.children && <span className="text-danger">{errors.children}</span>}
+              </div>
               </div>
               <br />
               <div className="form-group">
                 <label>Do you have any past refusals?</label>
+                <div className="form-check">
                 <input
-                  type="text"
+                  type="checkbox"
+                  id="pastRefusals"
                   name="pastRefusals"
                   value={formData.pastRefusals}
+                  checked={formData.pastRefusals}
                   onChange={handleChange}
-                  className="form-control"
-                  placeholder="Enter the number of past refusals"
+                  className="form-check-input"
                 />
+                <label htmlFor="pastRefusals" className="form-check-label">
+                    If yes, select the checkbox
+                  </label>
                 {errors.pastRefusals && <span className="text-danger">{errors.pastRefusals}</span>}
               </div>
+              </div>
               <br />
-
-
-
-
-
-
-
-              
               <div className="form-group">
                 <label>Have you ever been involved in a court case or charged with a crime?</label>
                 <div className="form-check">

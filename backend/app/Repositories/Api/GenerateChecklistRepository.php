@@ -55,6 +55,40 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             // Fetch marital status documents
             $group['maritalStatus'] = $this->fetchMaritalStatusDocuments($group['document_group_id'], $request['maritalStatus']);
 
+
+
+
+
+
+
+
+            // Fetch workExperience documents
+            if ($request['children'] == true) {
+
+                $childrenDocuments = $this->fetchChildrenDocuments($group['document_group_id']);
+
+                $group['children'] = $childrenDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+            }
+            // Fetch workExperience documents
+            if ($request['pastRefusals'] == true) {
+
+                $pastRefusalDocuments = $this->fetchpastRefusalDocuments($group['document_group_id']);
+
+                $group['pastRefusals'] = $pastRefusalDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+            }
+            // Fetch workExperience documents
+            if ($request['crimeRecord'] == true) {
+
+                $crimeRecordDocuments = $this->fetchcrimeRecordDocuments($group['document_group_id']);
+
+                $group['crimeRecord'] = $crimeRecordDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+            }
         }
 
         return $documentGroups;
@@ -94,7 +128,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         return $qualifications;
     }
-
+    
     protected function fetchWorkExperienceDocuments($documentGroupId)
     {
         $workExperienceDocuments = DB::table('work_experience_document')
@@ -153,4 +187,74 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         return $maritalStatusDocs;
     }
+      
+    protected function fetchChildrenDocuments($documentGroupId)
+    {
+        $childrenDocuments = DB::table('children_document')
+            ->select(
+                'children_document.document_id',
+                'children_document.document_group_id',
+                'children_document.status',
+                'document.status as document_status',
+                'children_document.created_at as created_at',
+                'children_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('children_document.document_group_id', $documentGroupId)
+            ->where('children_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'children_document.document_id', '=', 'document.id')
+            ->get();
+
+        return $childrenDocuments;
+    }
+
+    protected function fetchpastRefusalDocuments($documentGroupId)
+    {
+        $refusalDocuments = DB::table('refusal_document')
+            ->select(
+                'refusal_document.document_id',
+                'refusal_document.document_group_id',
+                'refusal_document.status',
+                'document.status as document_status',
+                'refusal_document.created_at as created_at',
+                'refusal_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('refusal_document.document_group_id', $documentGroupId)
+            ->where('refusal_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'refusal_document.document_id', '=', 'document.id')
+            ->get();
+
+        return $refusalDocuments;
+    }
+
+    protected function fetchcrimeRecordDocuments($documentGroupId)
+    {
+        $crimeRecordDocuments = DB::table('crime_record_document')
+            ->select(
+                'crime_record_document.document_id',
+                'crime_record_document.document_group_id',
+                'crime_record_document.status',
+                'document.status as document_status',
+                'crime_record_document.created_at as created_at',
+                'crime_record_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('crime_record_document.document_group_id', $documentGroupId)
+            ->where('crime_record_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'crime_record_document.document_id', '=', 'document.id')
+            ->get();
+
+        return $crimeRecordDocuments;
+    }
+    
 }
