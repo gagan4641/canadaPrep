@@ -51,6 +51,10 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                     return (array) $item;
                 })->toArray();
             }
+
+            // Fetch marital status documents
+            $group['maritalStatus'] = $this->fetchMaritalStatusDocuments($group['document_group_id'], $request['maritalStatus']);
+
         }
 
         return $documentGroups;
@@ -112,5 +116,41 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             ->get();
 
         return $workExperienceDocuments;
+    }
+
+    public function fetchMaritalStatusDocuments($documentGroupId, $maritalStatusId)
+    {
+        $maritalStatusDocs = DB::table('marital_status')
+            ->select(
+                'marital_status.id as marital_status_id',
+                'marital_status.title as marital_status_title',
+                'marital_status.status',
+                'document.id as document_id',
+                'document.title as document_title'
+            )
+            ->where('marital_status.document_group_id', $documentGroupId)
+            ->where('marital_status.id', $maritalStatusId)
+            ->where('marital_status.status', true)
+            ->where('marital_status_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('marital_status_document', 'marital_status.id', '=', 'marital_status_document.marital_status_id')
+            ->leftJoin('document', 'marital_status_document.document_id', '=', 'document.id')
+            ->get()
+            ->groupBy('marital_status_id')
+            ->map(function ($marital_statusGroup) {
+                return [
+                    'marital_status_id' => $marital_statusGroup->first()->marital_status_id,
+                    'marital_status_title' => $marital_statusGroup->first()->marital_status_title,
+                    'status' => $marital_statusGroup->first()->status,
+                    'documents' => $marital_statusGroup->map(function ($doc) {
+                        return [
+                            'document_id' => $doc->document_id,
+                            'document_title' => $doc->document_title,
+                        ];
+                    })->toArray(),
+                ];
+            })->values()->toArray();
+
+        return $maritalStatusDocs;
     }
 }
