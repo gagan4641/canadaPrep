@@ -45,15 +45,15 @@ class GenerateChecklistController extends Controller
 
         $request->validate($rules, $messages);
 
-     //   dd($request);
-
         $customErrors = $generateChecklistService->isValidQualificationYear($customErrors);
         $customErrors = $generateChecklistService->isValidQualificationYearSequence($customErrors);
         $result = response()->json(['status' => 'error', 'customErrors' => $customErrors]);
 
         if (!array_filter($customErrors)) {
 
-            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request);
+
+            $profileGap = $generateChecklistService->checkGapAfterLastQualificationOrWorkExp();
+            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request, $profileGap);
 
             dd('here', $groupDocuments);
 

@@ -108,6 +108,20 @@ class DatabaseSeeder extends Seeder
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
+            [
+                'title' => 'Documents checklist related to Gap in profile',
+                'description' => 'Documents checklist related to Gap in profile',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'You need to attempt atlest one of the below given language tests with mentioned required results',
+                'description' => 'You need to attempt atlest one of the below given language tests with mentioned required results',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
         ];
 
         foreach ($documentGroupsData as $row) {
@@ -488,7 +502,114 @@ class DatabaseSeeder extends Seeder
                 'status' => '1',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
-            ],   
+            ],
+            [
+                'title' => 'A detailed Explanation Letter explaining the reason(s) for the gap',
+                'description' => 'A detailed Explanation Letter explaining the reason(s) for the gap',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Relevant Certificates/Documents supports the explanation provided in the letter',
+                'description' => 'Relevant Certificates/Documents supports the explanation provided in the letter',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Proof of Activities during the Gap (Such as Freelancing, Volunteer Work, Internships, Courses, etc.)',
+                'description' => 'Proof of Activities during the Gap (Such as Freelancing, Volunteer Work, Internships, Courses, etc.)',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'IELTS (International English Language Testing System): Minimum Requirement: Typically, universities require an overall band score ranging from 6.0 to 7.5 for undergraduate programs and 6.5 to 8.0 for postgraduate programs, depending on the institution and course.',
+                'description' => 'IELTS (International English Language Testing System): Minimum Requirement: Typically, universities require an overall band score ranging from 6.0 to 7.5 for undergraduate programs and 6.5 to 8.0 for postgraduate programs, depending on the institution and course.',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'TOEFL (Test of English as a Foreign Language): Minimum Requirement: Scores range from 60 to 100 for undergraduate programs and 80 to 110 for postgraduate programs, depending on the institution and course.',
+                'description' => 'TOEFL (Test of English as a Foreign Language): Minimum Requirement: Scores range from 60 to 100 for undergraduate programs and 80 to 110 for postgraduate programs, depending on the institution and course.',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'PTE Academic (Pearson Test of English Academic): Minimum Requirement: Scores range from 50 to 70 for undergraduate programs and 58 to 79 for postgraduate programs, depending on the institution and course.',
+                'description' => 'PTE Academic (Pearson Test of English Academic): Minimum Requirement: Scores range from 50 to 70 for undergraduate programs and 58 to 79 for postgraduate programs, depending on the institution and course.',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Cambridge English Qualifications (such as C1 Advanced or C2 Proficiency): Minimum Requirement: Institutions often request a C1 or C2 level, which equates to scores between 160 to 210 for C1 Advanced and 180 to 230 for C2 Proficiency.',
+                'description' => 'Cambridge English Qualifications (such as C1 Advanced or C2 Proficiency): Minimum Requirement: Institutions often request a C1 or C2 level, which equates to scores between 160 to 210 for C1 Advanced and 180 to 230 for C2 Proficiency.',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Aadhar Card of the family members and financial supporter',
+                'description' => 'Aadhar Card of the family members and financial supporter',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Pan Card of the family members and financial supporter',
+                'description' => 'Pan Card of the family members and financial supporter',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Passport of the family members and financial supporter',
+                'description' => 'Passport of the family members and financial supporter',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Tax returns of last 2 years',
+                'description' => 'Tax returns of last 2 years',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Tax returns of last 2 years of parents or Guardians or Supporter',
+                'description' => 'Tax returns of last 2 years of parents or Guardians or Supporter',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Property evaluation report from chartered accountant',
+                'description' => 'Property evaluation report from chartered accountant',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Gold evaluation report from chartered accountant',
+                'description' => 'Gold evaluation report from chartered accountant',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'title' => 'Cash and other assets like vehicles, investments and business turnover evaluation report from chartered accountant',
+                'description' => 'Cash and other assets like vehicles, investments and business turnover evaluation report from chartered accountant',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+
+
         ];
 
         foreach ($documentData as $row) {
@@ -530,6 +651,54 @@ class DatabaseSeeder extends Seeder
             [
                 'document_group_id' => '2',
                 'document_id' => '6',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '50',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '51',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '52',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '53',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '54',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '55',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '56',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_group_id' => '2',
+                'document_id' => '57',
                 'created_at' => '2023-11-06 01:14:14',
                 'updated_at' => '2023-11-06 01:14:14'
             ],
@@ -709,7 +878,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\QualificationDocument::create($row);
         }
 
-        // Insert common documents data
+        // Insert work experience documents data
         $workExperienceDocumentData = [
             [
                 'document_id' => '18',
@@ -943,6 +1112,71 @@ class DatabaseSeeder extends Seeder
 
         foreach ($crimeRecordDocumentData as $row) {
             \App\Models\CrimeRecordDocument::create($row);
+        }
+
+        // Insert profile gap documents data
+        $profileGapDocumentData = [
+            [
+                'document_id' => '43',
+                'document_group_id' => '9',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '44',
+                'document_group_id' => '9',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '45',
+                'document_group_id' => '9',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($profileGapDocumentData as $row) {
+            \App\Models\ProfileGapDocument::create($row);
+        }
+
+        // Insert profile gap documents data
+        $languageTestDocumentData = [
+            [
+                'document_id' => '46',
+                'document_group_id' => '10',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '47',
+                'document_group_id' => '10',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '48',
+                'document_group_id' => '10',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+            [
+                'document_id' => '49',
+                'document_group_id' => '10',
+                'status' => '1',
+                'created_at' => '2023-11-06 01:14:14',
+                'updated_at' => '2023-11-06 01:14:14'
+            ],
+        ];
+
+        foreach ($languageTestDocumentData as $row) {
+            \App\Models\LanguageTestDocument::create($row);
         }
 
     }

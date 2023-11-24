@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class GenerateChecklistRepository implements GenerateChecklistInterface
 {
-    public function getGroupDocuments($request)
+    public function getGroupDocuments($request, $profileGap)
     {
         // Fetch document groups with associated documents
         $documentGroups = DB::table('document_group')
@@ -42,7 +42,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             // Fetch qualifications documents
             $group['qualifications'] = $this->getQualificationsUnderDocumentGroup($group['document_group_id'], $request['qualifications']);
 
-            // Fetch workExperience documents
+            // Fetch work experience documents
             if ($request['workExperienceStatus'] == true) {
 
                 $workExperienceDocuments = $this->fetchWorkExperienceDocuments($group['document_group_id']);
@@ -55,14 +55,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
             // Fetch marital status documents
             $group['maritalStatus'] = $this->fetchMaritalStatusDocuments($group['document_group_id'], $request['maritalStatus']);
 
-
-
-
-
-
-
-
-            // Fetch workExperience documents
+            // Fetch children related documents
             if ($request['children'] == true) {
 
                 $childrenDocuments = $this->fetchChildrenDocuments($group['document_group_id']);
@@ -71,7 +64,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                     return (array) $item;
                 })->toArray();
             }
-            // Fetch workExperience documents
+            // Fetch past refusals documents
             if ($request['pastRefusals'] == true) {
 
                 $pastRefusalDocuments = $this->fetchpastRefusalDocuments($group['document_group_id']);
@@ -80,7 +73,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                     return (array) $item;
                 })->toArray();
             }
-            // Fetch workExperience documents
+            // Fetch crime record documents
             if ($request['crimeRecord'] == true) {
 
                 $crimeRecordDocuments = $this->fetchcrimeRecordDocuments($group['document_group_id']);
@@ -89,6 +82,25 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
                     return (array) $item;
                 })->toArray();
             }
+
+            // Fetch profile gap documents
+            if($profileGap > 1) {
+
+                $profileGapDocuments = $this->fetchprofileGapDocuments($group['document_group_id']);
+
+                $group['profileGap'] = $profileGapDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+            }
+
+            // Fetch language test documents
+            $languageTestDocuments = $this->fetchlanguageTestDocuments($group['document_group_id']);
+
+            $group['languageTest'] = $languageTestDocuments->map(function ($item) {
+                    return (array) $item;
+                })->toArray();
+
+
         }
 
         return $documentGroups;
@@ -128,7 +140,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         return $qualifications;
     }
-    
+
     protected function fetchWorkExperienceDocuments($documentGroupId)
     {
         $workExperienceDocuments = DB::table('work_experience_document')
@@ -187,7 +199,7 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         return $maritalStatusDocs;
     }
-      
+
     protected function fetchChildrenDocuments($documentGroupId)
     {
         $childrenDocuments = DB::table('children_document')
@@ -256,5 +268,50 @@ class GenerateChecklistRepository implements GenerateChecklistInterface
 
         return $crimeRecordDocuments;
     }
-    
+
+    protected function fetchprofileGapDocuments($documentGroupId)
+    {
+        $profileGapDocuments = DB::table('profile_gap_document')
+            ->select(
+                'profile_gap_document.document_id',
+                'profile_gap_document.document_group_id',
+                'profile_gap_document.status',
+                'document.status as document_status',
+                'profile_gap_document.created_at as created_at',
+                'profile_gap_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('profile_gap_document.document_group_id', $documentGroupId)
+            ->where('profile_gap_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'profile_gap_document.document_id', '=', 'document.id')
+            ->get();
+
+        return $profileGapDocuments;
+    }
+
+    protected function fetchlanguageTestDocuments($documentGroupId)
+    {
+        $profileGapDocuments = DB::table('language_test_document')
+            ->select(
+                'language_test_document.document_id',
+                'language_test_document.document_group_id',
+                'language_test_document.status',
+                'document.status as document_status',
+                'language_test_document.created_at as created_at',
+                'language_test_document.updated_at as updated_at',
+                'document.title as document_title',
+                'document.created_at as document_created_at',
+                'document.updated_at as document_updated_at'
+            )
+            ->where('language_test_document.document_group_id', $documentGroupId)
+            ->where('language_test_document.status', true)
+            ->where('document.status', true)
+            ->leftJoin('document', 'language_test_document.document_id', '=', 'document.id')
+            ->get();
+
+        return $profileGapDocuments;
+    }
 }

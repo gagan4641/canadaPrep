@@ -49,4 +49,14 @@ class Document extends Model
     {
         return $this->hasMany(RefusalDocument::class);
     }
+
+    public function ProfileGapDocuments()
+    {
+        return $this->hasMany(ProfileGapDocument::class);
+    }
+
+    public function LanguageTestDocuments()
+    {
+        return $this->hasMany(LanguageTestDocument::class);
+    }
 }
