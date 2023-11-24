@@ -115,7 +115,7 @@ function GenerateChecklist() {
       console.log(response);
       if (response.status === 'success') {
         setErrors({});
-       // navigate('/dashboard');
+        navigate('/documentCheckist');
       } else {
         setErrors(response.customErrors);
       }
@@ -130,7 +130,6 @@ function GenerateChecklist() {
         console.error('Generate Checklist Error:', error);
       }
     }
-
   }
 
   return (
@@ -150,6 +149,12 @@ function GenerateChecklist() {
                 <label htmlFor="email">Email address:</label>
                 <input value={formData.email} name="email" onChange={handleChange} type="text" className="form-control" placeholder="Enter email" id="email" />
                 {errors.email && <span className="text-danger">{errors.email}</span>}
+              </div>
+              <br />
+              <div className="form-group">
+                <label htmlFor="dob">Date Of Birth:</label>
+                <input name="dob" value={formData.dob} onChange={handleChange} type="date" className="form-control" placeholder="Enter dob" id="dob" />
+                {errors.dob && <span className="text-danger">{errors.dob}</span>}
               </div>
               <br />
               <div className="form-group">
@@ -408,12 +413,6 @@ function GenerateChecklist() {
                   </label>
                   {errors.crimeRecord && <span className="text-danger">{errors.crimeRecord}</span>}
                 </div>
-              </div>
-              <br />
-              <div className="form-group">
-                <label htmlFor="dob">Date Of Birth:</label>
-                <input name="dob" value={formData.dob} onChange={handleChange} type="date" className="form-control" placeholder="Enter dob" id="dob" />
-                {errors.dob && <span className="text-danger">{errors.dob}</span>}
               </div>
               <br />
               <button type="submit" className="btn btn-primary">Generate</button>

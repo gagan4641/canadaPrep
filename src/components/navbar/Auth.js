@@ -4,6 +4,7 @@ import Home from "../../pages/Home";
 import Dashboard from "../../pages/Dashboard";
 import AuthUser from "../../api/auth/AuthUser";
 import GenerateChecklist from "../../pages/GenerateChecklist";
+import DocumentCheckist from "../../pages/DocumentCheckist";
 
 function Auth() {
 
@@ -38,6 +39,9 @@ function Auth() {
                 <Route path="/" element={<Home />} />
                 <Route path="/generateChecklist" element={<GenerateChecklist />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/documentCheckist" element={<DocumentCheckist />} />
+
+                
             </Routes>
         </div>
     );
