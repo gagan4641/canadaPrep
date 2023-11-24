@@ -115,7 +115,7 @@ function GenerateChecklist() {
       console.log(response);
       if (response.status === 'success') {
         setErrors({});
-        navigate('/dashboard');
+       // navigate('/dashboard');
       } else {
         setErrors(response.customErrors);
       }

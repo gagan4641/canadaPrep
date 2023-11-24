@@ -53,11 +53,9 @@ class GenerateChecklistController extends Controller
 
 
             $profileGap = $generateChecklistService->checkGapAfterLastQualificationOrWorkExp();
-            $groupDocuments = $this->generateChecklistRepository->getGroupDocuments($request, $profileGap);
+            $documentsChecklist = $this->generateChecklistRepository->getGroupDocuments($request, $profileGap);
 
-            dd('here', $groupDocuments);
-
-            $result = response()->json(['status' => 'success', 'message' => 'Form submitted successfully']);
+            $result = response()->json(['status' => 'success', 'documentsChecklist' => $documentsChecklist]);
         }
 
         return $result;
